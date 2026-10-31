@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ✏️ عنوان تب مرورگر و توضیح کوتاهی که در گوگل دیده می‌شود -->
+  <title>عرفان محمدی | Erfan Mohammadi </title>
+  <meta name="description" content="وب‌سایت شخصی نام و نام خانوادگی؛ نمونه‌کارها و راه‌های ارتباطی.">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- فونت وزیرمتن از Google Fonts؛ اگر بارگذاری نشود، فونت‌های سیستم جایگزین می‌شوند -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ───── رنگ‌ها: برای تغییر ظاهر سایت فقط همین چند مقدار را عوض کنید ───── */
+    :root {
+      --paper: #f4f7fa;       /* زمینه صفحه */
+      --ink: #0f1b2d;         /* رنگ متن */
+      --muted: #51627a;       /* متن کم‌رنگ‌تر */
+      --line: #d8e0e8;        /* خط‌های جداکننده */
+      --accent: #0b7f6b;      /* رنگ اصلی (لینک‌ها و نوار کنار عنوان‌ها) */
+      --accent-soft: #cfeae3; /* رنگ نشانگر زیر نام */
+    }
+    /* حالت تیره: وقتی گوشی یا کامپیوتر بازدیدکننده روی حالت تیره باشد */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0c1522;
+        --ink: #e9eff6;
+        --muted: #9fb0c3;
+        --line: #22344a;
+        --accent: #3dd0b3;
+        --accent-soft: #14423c;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Vazirmatn', Tahoma, system-ui, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 2;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    /* ستون باریک وسط صفحه؛ خواندن متن فارسی در این عرض راحت‌تر است */
+    .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* منوی بالا */
+    header { padding: 1.5rem 0 0; }
+    nav { display: flex; gap: 1.5rem; font-size: 0.95rem; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--accent); }
+
+    /* بخش اول صفحه: نام بزرگ با نشانگر رنگی زیرش */
+    .hero { padding: clamp(3rem, 10vw, 6.5rem) 0 3rem; }
+    .photo { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; }
+    h1 { font-size: clamp(2.6rem, 9vw, 4.75rem); font-weight: 800; line-height: 1.3; margin: 0; }
+    h1 .name {
+      box-shadow: inset 0 -0.3em 0 var(--accent-soft);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+    .lead { font-size: 1.3rem; color: var(--muted); max-width: 32rem; margin: 1.25rem 0 1.75rem; }
+    .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+    .links a { font-weight: 600; color: var(--accent); text-underline-offset: 0.35em; }
+
+    /* بخش‌ها */
+    section { padding: 2.5rem 0; border-top: 1px solid var(--line); }
+    h2 {
+      font-size: 1.5rem; font-weight: 800; margin: 0 0 1rem;
+      padding-inline-start: 0.9rem; border-inline-start: 0.3rem solid var(--accent);
+    }
+    p { margin: 0 0 1rem; }
+
+    /* مهارت‌ها */
+    dl { display: grid; grid-template-columns: 7rem 1fr; gap: 0.5rem 1rem; margin: 0; }
+    dt { color: var(--muted); }
+    dd { margin: 0; }
+
+    /* پروژه‌ها */
+    .project { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+    .project:last-child { border-bottom: 0; }
+    .project h3 { margin: 0; font-size: 1.15rem; }
+    .project h3 a { text-decoration: none; }
+    .project h3 a:hover { color: var(--accent); }
+    .project p { margin: 0.25rem 0; color: var(--muted); }
+    .tags { font-size: 0.9rem; color: var(--accent); }
+
+    footer { padding: 2.5rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+
+    /* گوشی */
+    @media (max-width: 30rem) {
+      dl { grid-template-columns: 1fr; }
+      dt { margin-top: 0.5rem; }
+    }
+
+    /* حرکت: فقط یک بار هنگام باز شدن صفحه، و فقط اگر کاربر حرکت را غیرفعال نکرده باشد */
+    @media (prefers-reduced-motion: no-preference) {
+      h1 { animation: rise 0.7s ease-out both; }
+      @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <nav aria-label="منوی اصلی">
+        <a href="#about">درباره من</a>
+        <a href="#projects">پروژه‌ها</a>
+        <a href="#contact">تماس</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ───── بخش اول ───── -->
+      <div class="hero">
+        <!-- ✏️ اگر عکس دارید: فایل را کنار index.html بگذارید (مثلاً me.jpg) و علامت‌های کامنت را بردارید -->
+        <!-- <img class="photo" src="me.jpg" alt="عکس نام و نام خانوادگی" width="96" height="96"> -->
+
+        <!-- ✏️ نام خودتان -->
+        <h1><span class="name">عرفان محمدی</span></h1>
+
+        <!-- ✏️ یک جمله درباره اینکه چه کاری می‌کنید -->
+        <p class="lead">برنامه نویس و دانشجوی کارشناسی کامپیوتر دانشگاه تبریز</p>
+
+        <div class="links">
+          <!-- ✏️ لینک‌های خودتان را بنویسید -->
+          <a href="https://github.com/Erfanmo85">گیت‌هاب</a>
+          <a href="mailto:Erfan8547mohammadi@gmail.com">ایمیل</a>
+        </div>
+      </div>
+
+      <!-- ───── درباره من ───── -->
+      <section id="about">
+        <h2>درباره من</h2>
+        <!-- ✏️ دو یا سه جمله درباره خودتان؛ از جمله‌های کوتاه و صمیمی استفاده کنید -->
+        <p>برنامه نویس full-stack</p>
+
+        <!-- ✏️ مهارت‌ها؛ هر ردیف یک «نام» و یک «فهرست» دارد -->
+        <dl>
+          <dt>فرانت‌اند</dt>
+          <dd>Angular، TypeScript، HTML و CSS</dd>
+          <dt>بک‌اند</dt>
+          <dd>ASP.NET، C#، SQL</dd>
+          <dt>ابزارها</dt>
+          <dd>Git، GitHub، VS Code</dd>
+        </dl>
+      </section>
+
+      <!-- ───── پروژه‌ها ───── -->
+      <section id="projects">
+        <h2>پروژه‌ها</h2>
+
+        <!-- ✏️ هر پروژه یک بلوک article است؛ برای پروژه جدید یکی از آنها را کپی کنید -->
+        <article class="project">
+          <h3><a href="https://github.com/Erfanmo85/PharmaWarehouse">PharmawareHouse</a></h3>
+          <p>سامانه دمو انبارداری دارو</p>
+          <span class="tags" dir="ltr">Angular · ASP.NET</span>
+        </article>
+
+        
+
+      <!-- ───── تماس ───── -->
+      <section id="contact">
+        <h2>تماس</h2>
+        <!-- ✏️ فقط راه‌هایی را بگذارید که دوست دارید عمومی باشند (آدرس خانه و شماره تلفن نگذارید) -->
+        <p>برای همکاری یا گفتگو، ایمیل بزنید: <a href="mailto:Erfan8547mohammadi@gmail.com" dir="ltr">Erfan8547mohammadi@gmail.com</a></p>
+        <p>گیت‌هاب: <a href="https://github.com/Erfanmo85" dir="ltr">github.com/Erfanmo85</a></p>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year">۱۴۰۵</span> عرفان محمدی
+    </footer>
+
+  </div>
+
+  <script>
+    // سال جاری را به‌صورت شمسی در پایین صفحه می‌نویسد
+    try {
+      document.getElementById('year').textContent =
+        new Date().toLocaleDateString('fa-IR', { year: 'numeric' });
+    } catch (e) { /* اگر مرورگر پشتیبانی نکرد، همان مقدار ثابت می‌ماند */ }
+  </script>
+</body>
+</html>

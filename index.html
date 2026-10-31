@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- ✏️ عنوان تب مرورگر و توضیح کوتاهی که در گوگل دیده می‌شود -->
-  <title>عرفان محمدی | Erfan Mohammadi </title>
-  <meta name="description" content="وب‌سایت شخصی نام و نام خانوادگی؛ نمونه‌کارها و راه‌های ارتباطی.">
+  <title>عرفان محمدی | Erfan Mohammadi</title>
+  <meta name="description" content="وب‌سایت شخصی عرفان محمدی؛ برنامه‌نویس full-stack. نمونه‌کارها و راه‌های ارتباطی.">
   <meta name="color-scheme" content="light dark">
 
   <!-- فونت وزیرمتن از Google Fonts؛ اگر بارگذاری نشود، فونت‌های سیستم جایگزین می‌شوند -->
@@ -15,182 +15,326 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
-   @font-face {
-    font-family: 'Morabba';
-    src: url('/Morabba-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-    /* ───── رنگ‌ها: برای تغییر ظاهر سایت فقط همین چند مقدار را عوض کنید ───── */
+    /* فونت مربا (فونت اصلی): فایل Morabba-SemiBold.ttf باید کنار همین index.html باشد.
+       آدرس بدون «/» اول نوشته شده تا هم روی GitHub Pages و هم با دوبار کلیک روی فایل کار کند */
+    @font-face {
+      font-family: 'Morabba';
+      src: url('Morabba-SemiBold.ttf') format('truetype');
+      font-weight: 100 900;   /* یک فایل برای همه ضخامت‌ها؛ مرورگر ضخامت ساختگی نمی‌سازد */
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ───── رنگ‌ها: برای تغییر ظاهر سایت فقط همین مقدارها را عوض کنید ───── */
     :root {
-      --paper: #f4f7fa;       /* زمینه صفحه */
-      --ink: #0f1b2d;         /* رنگ متن */
-      --muted: #51627a;       /* متن کم‌رنگ‌تر */
-      --line: #d8e0e8;        /* خط‌های جداکننده */
-      --accent: #0b7f6b;      /* رنگ اصلی (لینک‌ها و نوار کنار عنوان‌ها) */
-      --accent-soft: #cfeae3; /* رنگ نشانگر زیر نام */
+      --paper: #f2f7f8;                     /* زمینه صفحه */
+      --ink: #0b1a2b;                       /* رنگ متن */
+      --muted: #465a72;                     /* متن کم‌رنگ‌تر */
+      --line: rgba(11, 26, 43, 0.12);       /* خط‌های جداکننده */
+      --accent: #0a7b68;                    /* رنگ اصلی برای متن و لینک */
+      --btn: #0a7b68;                       /* رنگ دکمه اصلی */
+      --on-btn: #ffffff;                    /* رنگ نوشته روی دکمه */
+      --accent-soft: rgba(15, 165, 138, 0.22); /* نشانگر زیر نام */
+      --panel: rgba(255, 255, 255, 0.62);   /* زمینه کادرهای شیشه‌ای */
+      --panel-line: rgba(11, 26, 43, 0.10);
+      --bar: rgba(242, 247, 248, 0.72);     /* نوار بالای صفحه */
+
+      /* درخشش‌های رنگی پس‌زمینه و نقطه‌های شبکه */
+      --glow-1: rgba(15, 165, 138, 0.24);
+      --glow-2: rgba(59, 110, 230, 0.16);
+      --glow-3: rgba(15, 165, 138, 0.14);
+      --dot: rgba(11, 26, 43, 0.17);
+
+      /* کادر کد: در هر دو حالت تیره می‌ماند */
+      --code-bg: #0e2033;
+      --code-ink: #dbe7f3;
+      --code-key: #4ee0c1;
+      --code-str: #f4c06a;
+      --code-var: #8fb4ff;
+      --code-dim: #7f95ad;
+
+      color-scheme: light dark;
     }
     /* حالت تیره: وقتی گوشی یا کامپیوتر بازدیدکننده روی حالت تیره باشد */
     @media (prefers-color-scheme: dark) {
       :root {
-        --paper: #0c1522;
-        --ink: #e9eff6;
-        --muted: #9fb0c3;
-        --line: #22344a;
-        --accent: #3dd0b3;
-        --accent-soft: #14423c;
+        --paper: #07111d;
+        --ink: #e8f0f7;
+        --muted: #9db0c4;
+        --line: rgba(255, 255, 255, 0.12);
+        --accent: #3be0c0;
+        --btn: #3be0c0;
+        --on-btn: #06251f;
+        --accent-soft: rgba(59, 224, 192, 0.22);
+        --panel: rgba(16, 32, 50, 0.62);
+        --panel-line: rgba(255, 255, 255, 0.10);
+        --bar: rgba(7, 17, 29, 0.70);
+        --glow-1: rgba(36, 205, 176, 0.20);
+        --glow-2: rgba(70, 110, 255, 0.20);
+        --glow-3: rgba(36, 205, 176, 0.12);
+        --dot: rgba(255, 255, 255, 0.12);
       }
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; background: var(--paper); }
     body {
       margin: 0;
-      background: var(--paper);
       color: var(--ink);
-      font-family: 'Morabba','Vazirmatn', Tahoma, system-ui, sans-serif;
-      font-size: 1.0625rem;
+      font-family: 'Morabba', 'Vazirmatn', Tahoma, system-ui, sans-serif;
+      font-size: 1.2rem;                  /* اندازه پایه بزرگ‌تر از قبل */
       line-height: 2;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; }
-    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
 
-    /* ستون باریک وسط صفحه؛ خواندن متن فارسی در این عرض راحت‌تر است */
-    .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.5rem; }
+    /* ───── پس‌زمینه: سه درخشش رنگی نرم + شبکه نقطه‌ای که به‌تدریج محو می‌شود ───── */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; z-index: -2;
+      background:
+        radial-gradient(60rem 40rem at 88% -8%, var(--glow-1), transparent 62%),
+        radial-gradient(52rem 38rem at -5% 32%, var(--glow-2), transparent 62%),
+        radial-gradient(44rem 32rem at 75% 108%, var(--glow-3), transparent 62%);
+    }
+    body::after {
+      content: "";
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background-image: radial-gradient(var(--dot) 1.3px, transparent 1.5px);
+      background-size: 30px 30px;
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 18%, #000 15%, transparent 78%);
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 18%, #000 15%, transparent 78%);
+    }
 
-    /* منوی بالا */
-    header { padding: 1.5rem 0 0; }
-    nav { display: flex; gap: 1.5rem; font-size: 0.95rem; }
-    nav a { text-decoration: none; color: var(--muted); }
+    /* ستون اصلی؛ عریض‌تر از قبل تا روی صفحه بزرگ جا بگیرد */
+    .wrap { max-width: 66rem; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ───── نوار بالا ───── */
+    .bar {
+      position: sticky; top: 0; z-index: 10;
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      background: var(--bar);
+      border-bottom: 1px solid var(--line);
+    }
+    .bar-in { display: flex; justify-content: space-between; align-items: center; padding-top: 0.85rem; padding-bottom: 0.85rem; }
+    .brand { text-decoration: none; font-size: 1.3rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+    .brand::before { content: ""; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--btn); }
+    nav { display: flex; gap: 1.75rem; font-size: 1.05rem; }
+    nav a { text-decoration: none; color: var(--muted); transition: color 0.2s; }
     nav a:hover { color: var(--accent); }
 
-    /* بخش اول صفحه: نام بزرگ با نشانگر رنگی زیرش */
-    .hero { padding: clamp(3rem, 10vw, 6.5rem) 0 3rem; }
-    .photo { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; }
-    h1 { font-size: clamp(2.6rem, 9vw, 4.75rem); font-weight: 800; line-height: 1.3; margin: 0; }
+    /* ───── بخش اول ───── */
+    .hero {
+      display: grid; gap: 3.5rem; align-items: center;
+      padding: clamp(3.5rem, 9vw, 8rem) 0 clamp(3rem, 7vw, 6rem);
+    }
+    @media (min-width: 60rem) { .hero { grid-template-columns: 1.15fr 0.85fr; } }
+
+    .photo { display: block; width: 112px; height: 112px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; }
+
+    h1 { font-size: clamp(3.6rem, 11vw, 7.5rem); font-weight: 600; line-height: 1.2; margin: 0; }
     h1 .name {
-      box-shadow: inset 0 -0.3em 0 var(--accent-soft);
-      -webkit-box-decoration-break: clone;
-      box-decoration-break: clone;
+      box-shadow: inset 0 -0.26em 0 var(--accent-soft);   /* نشانگر رنگی زیر نام */
+      -webkit-box-decoration-break: clone; box-decoration-break: clone;
     }
-    .lead { font-size: 1.3rem; color: var(--muted); max-width: 32rem; margin: 1.25rem 0 1.75rem; }
-    .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
-    .links a { font-weight: 600; color: var(--accent); text-underline-offset: 0.35em; }
+    .lead { font-size: clamp(1.35rem, 3vw, 1.75rem); color: var(--muted); max-width: 34rem; margin: 1.5rem 0 2.25rem; line-height: 1.9; }
 
-    /* بخش‌ها */
-    section { padding: 2.5rem 0; border-top: 1px solid var(--line); }
+    /* دکمه‌ها */
+    .actions { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .btn {
+      display: inline-block; text-decoration: none; font-size: 1.15rem;
+      padding: 0.7rem 1.9rem; border-radius: 999px;
+      border: 2px solid var(--btn); transition: transform 0.2s, background 0.2s, color 0.2s;
+    }
+    .btn.primary { background: var(--btn); color: var(--on-btn); }
+    .btn.ghost { color: var(--accent); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.ghost:hover { background: var(--accent-soft); }
+
+    /* کادر کد در بخش اول؛ همان اطلاعات کوتاه شما به زبان برنامه‌نویسی */
+    .code {
+      direction: ltr; text-align: left;
+      background: var(--code-bg); color: var(--code-ink);
+      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.1rem;
+      box-shadow: 0 30px 60px -30px rgba(7, 17, 29, 0.55);
+      overflow: hidden;
+    }
+    .code-title {
+      padding: 0.7rem 1.25rem; font-size: 0.9rem; color: var(--code-dim);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+    }
+    .code pre {
+      margin: 0; padding: 1.4rem 1.5rem 1.6rem; overflow-x: auto;
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+      font-size: clamp(0.85rem, 2.2vw, 1.05rem); line-height: 1.85;
+    }
+    .k { color: var(--code-key); } .s { color: var(--code-str); } .v { color: var(--code-var); } .d { color: var(--code-dim); }
+
+    /* ───── بخش‌ها ───── */
+    section { padding: clamp(3.5rem, 7vw, 6rem) 0; border-top: 1px solid var(--line); scroll-margin-top: 4rem; }
     h2 {
-      font-size: 1.5rem; font-weight: 800; margin: 0 0 1rem;
-      padding-inline-start: 0.9rem; border-inline-start: 0.3rem solid var(--accent);
+      font-size: clamp(2.1rem, 5vw, 3.1rem); font-weight: 600; margin: 0 0 1.5rem; line-height: 1.5;
+      padding-inline-start: 1.1rem; border-inline-start: 0.35rem solid var(--btn);
     }
-    p { margin: 0 0 1rem; }
+    h3 { margin: 0; font-weight: 600; }
 
-    /* مهارت‌ها */
-    dl { display: grid; grid-template-columns: 7rem 1fr; gap: 0.5rem 1rem; margin: 0; }
-    dt { color: var(--muted); }
-    dd { margin: 0; }
+    .panel {
+      background: var(--panel); border: 1px solid var(--panel-line); border-radius: 1.4rem;
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    }
 
-    /* پروژه‌ها */
-    .project { padding: 1rem 0; border-bottom: 1px solid var(--line); }
-    .project:last-child { border-bottom: 0; }
-    .project h3 { margin: 0; font-size: 1.15rem; }
+    /* درباره من و مهارت‌ها */
+    .about-text { font-size: clamp(1.5rem, 3.6vw, 2.1rem); max-width: 40rem; margin: 0 0 2.5rem; line-height: 1.9; }
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.25rem; }
+    .skill { padding: 1.6rem 1.75rem; }
+    .skill h3 { color: var(--accent); font-size: 1.35rem; margin-bottom: 0.4rem; }
+    .skill p { margin: 0; color: var(--muted); line-height: 1.9; }
+
+    /* پروژه‌ها: کل کادر قابل کلیک است */
+    .projects { display: grid; gap: 1.25rem; }
+    .project { position: relative; padding: 2rem 2.25rem; transition: transform 0.2s, border-color 0.2s; }
+    .project:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .project h3 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
     .project h3 a { text-decoration: none; }
-    .project h3 a:hover { color: var(--accent); }
-    .project p { margin: 0.25rem 0; color: var(--muted); }
-    .tags { font-size: 0.9rem; color: var(--accent); }
+    .project h3 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; } /* لینک کل کادر را می‌پوشاند */
+    .project p { margin: 0.4rem 0 1rem; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+    .tags li { font-size: 0.95rem; color: var(--accent); background: var(--accent-soft); padding: 0.1rem 1rem; border-radius: 999px; }
 
-    footer { padding: 2.5rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+    /* تماس */
+    .contact-lead { font-size: clamp(1.4rem, 3vw, 1.8rem); color: var(--muted); margin: 0 0 0.5rem; }
+    .mail {
+      display: inline-block; direction: ltr; font-size: clamp(1.25rem, 4.6vw, 2.6rem); line-height: 1.5;
+      color: var(--accent); text-underline-offset: 0.3em; overflow-wrap: anywhere;
+    }
+    .gh { margin: 1.25rem 0 0; color: var(--muted); }
+    .gh a { color: var(--accent); }
+
+    footer { padding: 2.5rem 0 3.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 1rem; }
 
     /* گوشی */
-    @media (max-width: 30rem) {
-      dl { grid-template-columns: 1fr; }
-      dt { margin-top: 0.5rem; }
+    @media (max-width: 36rem) {
+      nav { gap: 1rem; font-size: 0.95rem; }
+      .brand { font-size: 1.1rem; }
+      .project { padding: 1.5rem; }
     }
 
-    /* حرکت: فقط یک بار هنگام باز شدن صفحه، و فقط اگر کاربر حرکت را غیرفعال نکرده باشد */
+    /* حرکت: فقط یک ورود هماهنگ هنگام باز شدن صفحه، و فقط اگر کاربر حرکت را غیرفعال نکرده باشد */
     @media (prefers-reduced-motion: no-preference) {
-      h1 { animation: rise 0.7s ease-out both; }
-      @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+      .rise { animation: rise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+      .code.rise { animation-delay: 0.18s; }
+      @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
 
-    <header>
+  <!-- ───── نوار بالا ───── -->
+  <header class="bar">
+    <div class="wrap bar-in">
+      <a class="brand" href="#">عرفان محمدی</a>
       <nav aria-label="منوی اصلی">
         <a href="#about">درباره من</a>
         <a href="#projects">پروژه‌ها</a>
         <a href="#contact">تماس</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <!-- ───── بخش اول ───── -->
-      <div class="hero">
+  <main class="wrap">
+
+    <!-- ───── بخش اول ───── -->
+    <div class="hero">
+      <div class="rise">
         <!-- ✏️ اگر عکس دارید: فایل را کنار index.html بگذارید (مثلاً me.jpg) و علامت‌های کامنت را بردارید -->
-        <!-- <img class="photo" src="me.jpg" alt="عکس نام و نام خانوادگی" width="96" height="96"> -->
+        <!-- <img class="photo" src="me.jpg" alt="عکس عرفان محمدی" width="112" height="112"> -->
 
         <!-- ✏️ نام خودتان -->
         <h1><span class="name">عرفان محمدی</span></h1>
 
         <!-- ✏️ یک جمله درباره اینکه چه کاری می‌کنید -->
-        <p class="lead">برنامه نویس و دانشجوی کارشناسی کامپیوتر دانشگاه تبریز</p>
+        <p class="lead">برنامه‌نویس و دانشجوی کارشناسی کامپیوتر دانشگاه تبریز</p>
 
-        <div class="links">
-          <!-- ✏️ لینک‌های خودتان را بنویسید -->
-          <a href="https://github.com/Erfanmo85">گیت‌هاب</a>
-          <a href="mailto:Erfan8547mohammadi@gmail.com">ایمیل</a>
+        <div class="actions">
+          <!-- ✏️ لینک‌های خودتان -->
+          <a class="btn primary" href="https://github.com/Erfanmo85">گیت‌هاب</a>
+          <a class="btn ghost" href="mailto:Erfan8547mohammadi@gmail.com">ایمیل</a>
         </div>
       </div>
 
-      <!-- ───── درباره من ───── -->
-      <section id="about">
-        <h2>درباره من</h2>
-        <!-- ✏️ دو یا سه جمله درباره خودتان؛ از جمله‌های کوتاه و صمیمی استفاده کنید -->
-        <p>برنامه نویس full-stack</p>
+      <!-- ✏️ کادر کد: مقدارها را مثل هر کد دیگری می‌توانید عوض کنید -->
+      <div class="code rise" aria-hidden="true">
+        <div class="code-title">profile.ts</div>
+<pre><code><span class="k">const</span> <span class="v">erfan</span> = {
+  role: <span class="s">"Full-stack developer"</span>,
+  stack: [<span class="s">"Angular"</span>, <span class="s">"ASP.NET"</span>],
+  university: <span class="s">"University of Tabriz"</span>,
+  learning: <span class="k">true</span>,
+};</code></pre>
+      </div>
+    </div>
 
-        <!-- ✏️ مهارت‌ها؛ هر ردیف یک «نام» و یک «فهرست» دارد -->
-        <dl>
-          <dt>فرانت‌اند</dt>
-          <dd>Angular، TypeScript، HTML و CSS</dd>
-          <dt>بک‌اند</dt>
-          <dd>ASP.NET، C#، SQL</dd>
-          <dt>ابزارها</dt>
-          <dd>Git، GitHub، VS Code</dd>
-        </dl>
-      </section>
+    <!-- ───── درباره من ───── -->
+    <section id="about">
+      <h2>درباره من</h2>
+      <!-- ✏️ بهتر است دو یا سه جمله صمیمی درباره خودتان بنویسید؛ این کادر برای متن بلندتر هم آماده است -->
+      <p class="about-text">برنامه‌نویس full-stack</p>
 
-      <!-- ───── پروژه‌ها ───── -->
-      <section id="projects">
-        <h2>پروژه‌ها</h2>
+      <!-- ✏️ مهارت‌ها؛ هر کادر یک عنوان و یک فهرست دارد -->
+      <div class="skills">
+        <div class="panel skill">
+          <h3>فرانت‌اند</h3>
+          <p>Angular، TypeScript، HTML و CSS</p>
+        </div>
+        <div class="panel skill">
+          <h3>بک‌اند</h3>
+          <p>ASP.NET، C#، SQL</p>
+        </div>
+        <div class="panel skill">
+          <h3>ابزارها</h3>
+          <p>Git، GitHub، VS Code</p>
+        </div>
+      </div>
+    </section>
 
+    <!-- ───── پروژه‌ها ───── -->
+    <section id="projects">
+      <h2>پروژه‌ها</h2>
+
+      <div class="projects">
         <!-- ✏️ هر پروژه یک بلوک article است؛ برای پروژه جدید یکی از آنها را کپی کنید -->
-        <article class="project">
-          <h3><a href="https://github.com/Erfanmo85/PharmaWarehouse">PharmawareHouse</a></h3>
+        <article class="panel project">
+          <h3><a href="https://github.com/Erfanmo85/PharmaWarehouse">PharmaWarehouse</a></h3>
           <p>سامانه دمو انبارداری دارو</p>
-          <span class="tags" dir="ltr">Angular · ASP.NET</span>
+          <ul class="tags">
+            <li>Angular</li>
+            <li>ASP.NET</li>
+          </ul>
         </article>
+      </div>
+    </section>
 
-        
+    <!-- ───── تماس ───── -->
+    <section id="contact">
+      <h2>تماس</h2>
+      <!-- ✏️ فقط راه‌هایی را بگذارید که دوست دارید عمومی باشند (آدرس خانه و شماره تلفن نگذارید) -->
+      <p class="contact-lead">برای همکاری یا گفتگو، ایمیل بزنید</p>
+      <a class="mail" href="mailto:Erfan8547mohammadi@gmail.com">Erfan8547mohammadi@gmail.com</a>
+      <p class="gh">گیت‌هاب: <a href="https://github.com/Erfanmo85" dir="ltr">github.com/Erfanmo85</a></p>
+    </section>
 
-      <!-- ───── تماس ───── -->
-      <section id="contact">
-        <h2>تماس</h2>
-        <!-- ✏️ فقط راه‌هایی را بگذارید که دوست دارید عمومی باشند (آدرس خانه و شماره تلفن نگذارید) -->
-        <p>برای همکاری یا گفتگو، ایمیل بزنید: <a href="mailto:Erfan8547mohammadi@gmail.com" dir="ltr">Erfan8547mohammadi@gmail.com</a></p>
-        <p>گیت‌هاب: <a href="https://github.com/Erfanmo85" dir="ltr">github.com/Erfanmo85</a></p>
-      </section>
-    </main>
+  </main>
 
-    <footer>
-    عرفان محمدی  © <span id="year">۱۴۰۵</span> 
-    </footer>
-
-  </div>
+  <footer>
+    <div class="wrap">عرفان محمدی © <span id="year">۱۴۰۵</span></div>
+  </footer>
 
   <script>
     // سال جاری را به‌صورت شمسی در پایین صفحه می‌نویسد

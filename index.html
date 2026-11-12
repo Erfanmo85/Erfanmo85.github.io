@@ -207,6 +207,9 @@
     .project h3 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
     .project h3 a { text-decoration: none; }
     .project h3 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; } /* لینک کل کادر را می‌پوشاند */
+    /* بنر معرفی باید بالاتر از لینک سراسری کارت قرار بگیرد و مستقل کلیک شود */
+    .tags li.banner-link { position: relative; z-index: 1; color: #bf2000; background: #ff9d9d; cursor: pointer; }
+    .tags li.banner-link a { display: block; color: inherit; text-decoration: none; }
     .project p { margin: 0.4rem 0 1rem; color: var(--muted); }
     .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
     .tags li { font-size: 0.95rem; color: var(--accent); background: var(--accent-soft); padding: 0.1rem 1rem; border-radius: 999px; }
@@ -332,7 +335,7 @@
           <ul class="tags">
             <li>python</li>
             <li>bot</li>
-            <li style="color:#bf2000; background:#ff9d9d" href="https://github.com/Erfanmo85/Erfanmo85.github.io/blob/950b597a1243250450cd13bd509acb56fe65557b/brochure_presence_company%20(2).pdf">دانلود بنر معرفی</li>
+            <li class="banner-link"><a href="brochure_presence_company%20(2).pdf" target="_blank" rel="noopener">دانلود بنر معرفی</a></li>
           </ul>
         </article>
       </div>
